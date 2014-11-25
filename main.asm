@@ -1,17 +1,21 @@
-; Print 'Hey'
+start:
+    mov ax, 0x07c0
+    mov ds, ax
+    mov es, ax
+    jmp main
 
-print:
-mov ah, 0x0e ;0e -> scrolling teletype
-mov al, 'H'
-int 0x10
-mov al, 'e'
-int 0x10
-mov al, 'y'
-int 0x10
+includes:
+    %include 'iolib.asm'
+    %include 'data.asm'
+
+main:
+    print hello_string
+    jmp end
 
 end:
-jmp $
+ jmp fill_boot_sector
 
 fill_boot_sector:
+jmp $
 times 510-($-$$) db 0 ; Pad the rest of the sector (with zeros)
 dw 0xaa55
