@@ -6,6 +6,7 @@ includes:
     %include 'iolib.asm'
     %include 'string.asm'
     %include 'data.asm'
+    %include 'hardware.asm'
 
 boot:
     ; Print the welcome message and any other thing that should be done before the user recivec control
@@ -25,6 +26,7 @@ end:
     jmp fill_boot_sector
 
 fill_boot_sector:
+    call shutdown
     cli
     hlt
     times 510-($-$$) db 0 ; Pad the rest of the sector (with zeros)
