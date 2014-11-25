@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo '(Running NASM) Creatin BIN file...'
-nasm main.asm -f bin -o ./dist/nops.bin
+nasm main.asm -i ./libs/ -f bin -o ./dist/nops.bin
 
 echo '(Running mkfs) Creating IMG file...'
 sudo mkfs.msdos -C ./dist/floppy.img 1440
