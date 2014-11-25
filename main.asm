@@ -1,9 +1,6 @@
-start:
-    ; Setup things
-    mov ax, 0x07c0
-    mov ds, ax
-    mov es, ax
-    jmp boot
+[BITS 16]
+[ORG 0x7c00]
+jmp boot
 
 includes:
     %include 'iolib.asm'
@@ -13,6 +10,7 @@ includes:
 boot:
     ; Print the welcome message and any other thing that should be done before the user recivec control
     print boot_msg
+    jmp main
 
 main:
     input buffer
@@ -27,6 +25,7 @@ end:
     jmp fill_boot_sector
 
 fill_boot_sector:
-    jmp $
+    cli
+    hlt
     times 510-($-$$) db 0 ; Pad the rest of the sector (with zeros)
     dw 0xaa55
