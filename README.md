@@ -1,9 +1,9 @@
-Nops
+sOS
 ====
 
-Nops (No Operating System) - An Operating System written in assembly
+sOS (Stupid Operating System) - An Operating System written in assembly
 
-## Running Nops
-The built in bash scripts provide two ways to run Nops.
-- To run Nops with QEMU, use run.sh
+## Running sOS
+The built in bash scripts provide two ways to run sOS.
+- To run sOS with QEMU, use run.sh
 - To create a VirtualBox compatiable img file, run make.sh
