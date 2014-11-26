@@ -18,6 +18,49 @@ print_string:
     .done:
         ret
 
+print_int:
+    ; Clear dx, cx
+    xor dx, dx
+    xor cx, cx
+
+    .push_loop:
+        ; Clear dx
+        xor dx, dx
+        ; ax / bx
+        div bx
+        ; Push the remainder to stack
+        xor dh, dh
+        push dx
+        ; Increase the counter (counts number of digits)
+        inc cx
+        ; Check if we have something to divide
+        cmp ax, 0
+        ; Loop until nothing left in ax
+        jne .push_loop
+                                   
+    .print_loop:
+        ; Get the next number from the stack
+        pop ax
+        ; Convert to ASCII
+        add al, 0x30
+        ; Print it
+        mov ah, 0x0e                            
+        int 0x10
+        ; Loop until cx is zero
+        loop .print_loop
+        ret
+
+%macro printf 1-2 10
+    ; Macro wrapper for print_int
+    ; Second arg is the base
+    ; ---------
+    pusha
+    mov ax, %1
+    mov bx, %2
+    call print_int
+    popa
+%endmacro
+
 %macro print 1
     ; Macro wrapper for print_string
     ; ---------
