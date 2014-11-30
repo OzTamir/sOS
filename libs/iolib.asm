@@ -1,4 +1,4 @@
-; Those are macros used to handle Textual-IO from the user
+; Those are functions used to handle Textual-IO from the user
 ;---------------------
 
 print_string:

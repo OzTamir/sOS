@@ -6,7 +6,7 @@ includes:
     %include 'iolib.asm'
     %include 'string.asm'
     %include 'data.asm'
-    %include 'hardware.asm'
+    %include 'power.asm'
 
 boot:
     ; Print the welcome message and any other thing that should be done before the user recivec control
